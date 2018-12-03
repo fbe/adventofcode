@@ -16,7 +16,7 @@ object Day3 extends App {
 
     // the game doesn't start at 0, so we simply take 1000 fields (+1), and YES, that is waste of memory, but it makes
     // the code more readable
-    val entireField = Array.fill(1009, 1000)(0)
+    val entireField = Array.fill(1000, 1000)(0)
     val pattern = """^#([0-9]+)\s+@\s+([0-9]+),([0-9]+):\s+([0-9]+)x([0-9]+)$""".r
     var moreThanOneFields = 0
     val claims = Source.fromResource("2018/day3/input.txt").getLines().map { case pattern(id, xoffs, yoffs, xsize, ysize) =>
