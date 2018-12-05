@@ -27,7 +27,7 @@ object Day5 extends App {
   }
 
   // Solution 1 - 11546
-  println(reduce(original).length)
+  println(s"Solution 1: ${reduce(original).length}")
 
   // Solution 2
   val unitToCount = new ConcurrentHashMap[Char, Int]()
@@ -41,7 +41,7 @@ object Day5 extends App {
   import scala.collection.JavaConverters._
   val minUnit = unitToCount.asScala.minBy(_._2)
 
-  println(s"Removed maximum with unit ${minUnit._1} - length: ${minUnit._2}")
+  println(s"Solution 2: ${minUnit._2} - Removed maximum with unit ${minUnit._1}")
 
   println(s"Took ${System.currentTimeMillis() - start}ms")
 }
