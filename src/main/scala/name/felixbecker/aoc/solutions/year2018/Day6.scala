@@ -10,6 +10,10 @@ case class Point(x: Int, y: Int, nearestCoordinate: Option[Coordinate] = None){
   def touchesFieldCorner(maxPoint: Point, minPoint: Point): Boolean = {
     x == maxPoint.x || x == minPoint.x || maxPoint.y == y || minPoint.y == y
   }
+
+  def distanceToAllPointsIsLessThan(num: Int, coordinates: List[Coordinate]): Boolean = {
+    coordinates.map { c => c.location.manhattanDistanceTo(this) }.sum < num
+  }
 }
 
 class GameField(val coordinates: List[Coordinate]) {
@@ -35,6 +39,8 @@ class GameField(val coordinates: List[Coordinate]) {
     allPoints.count(_.nearestCoordinate.contains(c))
   }.max
 
+  val solution2Count: Int = allPoints.count(p => p.distanceToAllPointsIsLessThan(10000, coordinates))
+
 }
 
 object Day6 extends App {
@@ -50,4 +56,5 @@ object Day6 extends App {
 
   println(gameField.largestAreaSize)
 
+  println(s"Solution 2: ${gameField.solution2Count}")
 }
