@@ -32,6 +32,16 @@ object Day8 extends App {
 
   val solution1 = tree.flatMap(_.metaData).sum
 
-  println(solution1)
+  println(s"Solution 1: $solution1")
+
+  def calc(node: Node): Int = node match {
+    case Node(Nil, metaData) => metaData.sum
+    case Node(children, metaData) =>
+      metaData.map {
+        case x if x < 1 || x > children.size => 0
+        case x => calc(children(x-1)) }.sum
+  }
+
+  println(s"Solution 2: ${calc(tree)}")
 
 }
