@@ -35,12 +35,13 @@ object Day10 extends App {
   }
 
   @tailrec
-  def calc(lastMinXY: MinXY, lastSkyPoints: List[SkyPoint]): Unit = {
+  def calc(secondsPassed: Int, lastMinXY: MinXY, lastSkyPoints: List[SkyPoint]): Unit = {
     val nextIteration = nextSecond(lastSkyPoints)
     val nextMinXy = minMaxXY(nextIteration)
     if(nextMinXy <= lastMinXY){
-      calc(nextMinXy, nextIteration)
+      calc(secondsPassed + 1, nextMinXy, nextIteration)
     } else {
+      println(s"Seconds passed: $secondsPassed")
       (lastMinXY.minY to lastMinXY.maxY).foreach { currY =>
         (lastMinXY.minX to lastMinXY.maxX).foreach { currX =>
           lastSkyPoints.find(p => p.positionX == currX && p.positionY == currY) match {
@@ -53,7 +54,7 @@ object Day10 extends App {
     }
   }
 
-  calc(minMaxXY(skyPoints), skyPoints)
+  calc(0, minMaxXY(skyPoints), skyPoints)
 
 
 }
