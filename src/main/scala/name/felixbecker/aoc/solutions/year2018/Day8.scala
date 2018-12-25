@@ -24,7 +24,7 @@ object Day8 extends App {
     val subNodesCount = remainingInput.next()
     val metaDataCount = remainingInput.next()
     val subNodes = (1 to subNodesCount).map(x => parseTree(remainingInput)).toList
-    val metaData = (1 to metaDataCount).map(x => remainingInput.next).toList
+    val metaData = remainingInput.take(metaDataCount).toList
     Node(subNodes, metaData)
   }
 
